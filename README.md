@@ -2,7 +2,7 @@
 Leaflet, now with lazy loading &amp; namespacing!
 
 ### Reasons to use:
- - Pulls files from the leaflet CDN, not your local copy
+ - Pulls files from the leaflet CDN, or your local copy (faster for dev on local box)
  - Can choose different versions manually (great in case I'm slow to update or if there's a regression)
  - Only loads when you need it
  - Supports multiple maps
@@ -18,7 +18,6 @@ Leaflet, now with lazy loading &amp; namespacing!
 ### Loading Scripts
 Loading js & css when you don't need it isn't cool. Now, you can load it the first time it's called.
 
-    var options = {version: '0.7.0'}; //optional, defaults to current version of 0.7.3
     Router.onBeforeAction(function() {
       leafletMaps.load({options});
       this.next();
@@ -26,6 +25,20 @@ Loading js & css when you don't need it isn't cool. Now, you can load it the fir
 
 You can check if the script is loaded by typing this in the console: `leafletMaps.isLoaded.get();`
 
+### Options
+Options are passed in via an object:
+
+    var options = {version: '0.7.3', local: true, plugins: ['markerCluster']};
+    
+`version`: optional, defaults to current version of 0.7.3 (for CDN loads only)
+
+`local`: optional, defaults to false. If true, will load your core js & css from "/public/leaflet/"
+
+`plugins` optional, Array. Possible options: 'awesomeMarkers', 'markerCluster'. Feel free to make a PR to add more.
+Just drop the required files into the `pluginRoot` & it'll find them & install them after the core loads.
+
+`pluginRoot` optional, defaults to "/public/leaflet/plugins". This is where you put all your plugins js & css files.
+     
 ### Putting it in a template
     {{>leafletMap name="exampleMap" options=leafletOptions}}
 `name` is the namespace.
@@ -70,5 +83,9 @@ That means the map fully loads all its tiles, all the time. No race conditions, 
       });
     });
 
+### Changelog
+  0.2.0 Added plugins, local file loading & fixed bug by stopping a computation in an autorun which could recreate a map
+  
+  0.1.0 Initial
 ### License
 MIT

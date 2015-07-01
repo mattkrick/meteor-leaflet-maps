@@ -1,6 +1,6 @@
 Package.describe({
   name: 'mattkrick:leaflet-maps',
-  version: '0.1.0',
+  version: '0.2.0',
   summary: 'Leaflet, now with lazy loading & namespacing!',
   git: 'https://github.com/mattkrick/meteor-leaflet-maps.git'
 });
