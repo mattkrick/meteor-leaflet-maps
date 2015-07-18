@@ -15,7 +15,7 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-  api.use('tinytest');
+  api.use(['tinytest', 'test-helpers']);
   api.use('mattkrick:leaflet-maps');
-  api.addFiles('leaflet-maps-tests.js');
+  api.addFiles(['tests/client/leaflet-maps.js'], 'client');
 });
