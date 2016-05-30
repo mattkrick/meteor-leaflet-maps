@@ -1,3 +1,5 @@
+NO LONGER MAINTAINED.
+
 # meteor-leaflet-maps
 Leaflet, now with lazy loading &amp; namespacing!
 
